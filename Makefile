@@ -1,14 +1,12 @@
 # Makefile for OpenBSD's yacc.
-# $Ragnarok: Makefile,v 1.4 2024/02/22 17:48:04 lecorbeau Exp $
+# $Ragnarok: Makefile,v 1.5 2025/03/04 19:33:44 lecorbeau Exp $
 
-include ${TOPDIR}/usr/share/mk/progs.mk
-
-CC =		clang
-CFLAGS +=	 -w -D_GNU_SOURCE -D__unused= ${O_FLAG} ${HARDENING_CPPFLAGS} ${HARDENING_CFLAGS}
-LDFLAGS +=	${HARDENING_LDFLAGS}
+CFLAGS +=	 -O2 -w -D_GNU_SOURCE -D__unused= 
+CPPFLAGS +=
+LDFLAGS +=	
 BINDIR =	/usr/bin
 MANDIR =	/usr/share/man/man1
-PROG =		yacc
+PROG =		oyacc
 
 OBJS =	closure.o error.o lalr.o lr0.o main.o mkpar.o output.o reader.o \
 	skeleton.o symtab.o verbose.o warshall.o portable.o
@@ -32,4 +30,3 @@ test:
 clean:
 	rm -f ${PROG} ${OBJS}
 
-distclean: clean
